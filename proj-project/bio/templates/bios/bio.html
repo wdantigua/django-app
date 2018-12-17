@@ -1,0 +1,24 @@
+{% extends 'bios/base.html' %}
+
+{% block content %}
+<div class="legislators">
+<!-- form where user can submit states abbr input -->
+    <form method="post" class="site_form" >
+        {% csrf_token %}
+        {{form.name}}
+        <input type="submit" value="lookup" placeholder="state abbr">
+    </form>
+
+<!--  display all the legislator info in the list -->
+    {% for lists in list %}
+    <h3>{{lists.full_name}}</h3>
+    <ul>
+        <li>chamber: {{lists.chamber}}</li>
+        <li>district: {{lists.district}}</li>
+        <li>party: {{lists.party}}</li>
+        <li>email: {{lists.email}}</li>
+    </ul>
+    {% endfor %}
+
+</div>
+{% endblock %}
